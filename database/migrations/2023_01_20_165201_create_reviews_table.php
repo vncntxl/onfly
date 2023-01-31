@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateReviewsTable extends Migration
 {
@@ -10,14 +10,12 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('place_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('review');
-            $table->text('comment')->nullable();
-            $table->timestamps();
-
+            $table->string('reviewer_name');
+            $table->integer('place_id')->unsigned();
             $table->foreign('place_id')->references('id')->on('places');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('rating');
+            $table->text('review_text');
+            $table->timestamps();
         });
     }
 
@@ -26,4 +24,3 @@ class CreateReviewsTable extends Migration
         Schema::dropIfExists('reviews');
     }
 }
-

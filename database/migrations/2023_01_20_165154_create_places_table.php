@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePlacesTable extends Migration
 {
@@ -10,11 +10,11 @@ class CreatePlacesTable extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('api_id');
             $table->string('name');
             $table->string('location');
-            $table->text('description')->nullable();
-            $table->string('picture');
+            $table->text('description');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
@@ -24,4 +24,3 @@ class CreatePlacesTable extends Migration
         Schema::dropIfExists('places');
     }
 }
-
