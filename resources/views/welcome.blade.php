@@ -1,35 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="welcome.css" />.
-    <title>Onfly</title>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    </head>
     <style>
-        body {
-          background-image: url(/img/background.jpg);
-          background-size: cover;
-          height: 100vh;
-        }
-      </style>
-</head>
-{{-- <header class="bg-white p-6 flex justify-between items-center">
-    <div class="flex items-center">
-        <img src="logo.png" alt="logo" class="w-12">
-        <h1 class="ml-4 text-lg font-medium">Your Website Name</h1>
-    </div>
-    <div class="flex items-center">
-        <a href="#" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Login</a>
-        <a href="#" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ml-4">Sign Up</a>
-    </div>
-</header> --}}
-<body class="flex items-center justify-center">
-    <form class="bg-white rounded-lg p-10 mt-10">
-      <h2 class="text-2xl font-bold mb-4">Find your next destination</h2>
-      <input type="text" class="w-full border border-gray-400 p-2 mb-4" placeholder="Search for a place or address">
-      <button class="bg-blue-500 text-white rounded-full p-2">Search</button>
-    </form>
-  </body>
+
+    </style>
+    <body class="bg-gray-100 h-screen" >
+        <header class="bg-white shadow-lg w-full" style="position: fixed;">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="/">
+                        <img src="img/logo.png" alt="Logo" style="height: 26px">
+                    </a>
+                    <nav>
+                        <a href="#" class="px-4 py-2 font-bold text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #CDBD15">Login</a>
+                        <a href="#" class="px-4 py-2 font-light text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #969696" >Sign Up</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="bg-cover bg-center h-screen" style="background-image: url('img/background.png');">
+            <div class="flex h-full items-center justify-center">
+              <div class="flex flex-col items-center justify-center h-screen bg-center bg-cover" style="background-image: url({{ asset('your_background_image.jpg') }}); position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+                <form style="width: 700px; ">
+                    <div class="relative">
+                        <input type="text" class="px-20 rounded-xl w-full h-16 mb-20" placeholder="Search..." style="outline: none;">
+                        <button class="absolute border-r left-0 top-2 bottom-0 pl-5 pr-5 h-12 outline-none border-gray-300 rounded button">
+                          <img src="img/explore.png" alt="Button Image" style="width: 25px">
+                        </button>
+                      </div>
+                <div class="text-center text-white text-7xl font-bold tracking-normal mb-4">Search Around</div>
+                <div class="text-center text-white text-7xl font-bold tracking-normal mb-5">The World</div>
+                <div class="text-center text-white font-light text-2xl">Enjoy your life.</div>
+              </div>
+            </div>
+          </main>
+          <img src="img/help.png" alt="Help" class="help-button" style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+          background-image: url('path/to/help-icon.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          cursor: pointer;">
+    </body>
 </html>
