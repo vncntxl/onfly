@@ -16,8 +16,8 @@
                         <img src="img/logo.png" alt="Logo" style="height: 26px">
                     </a>
                     <nav>
-                        <a href="#" class="px-4 py-2 font-bold text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #CDBD15">Login</a>
-                        <a href="#" class="px-4 py-2 font-light text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #969696" >Sign Up</a>
+                        <a href="/login" class="px-4 py-2 font-bold text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #CDBD15">Login</a>
+                        <a href="/register" class="px-4 py-2 font-light text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #969696" >Sign Up</a>
                     </nav>
                 </div>
             </div>
@@ -38,7 +38,7 @@
               </div>
             </div>
           </main>
-          <img src="img/help.png" alt="Help" class="help-button" style="
+          <a href="/home" src="img/help.png" alt="Help" class="help-button" style="
           position: fixed;
           bottom: 20px;
           right: 20px;
