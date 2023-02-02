@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     </head>
     <style>
 
@@ -16,15 +17,15 @@
                         <img src="img/logo.png" alt="Logo" style="height: 26px">
                     </a>
                     <nav>
-                        <a href="/login" class="px-4 py-2 font-bold text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #CDBD15">Login</a>
-                        <a href="/register" class="px-4 py-2 font-light text-gray-800 hover:bg-gray-200 hover:text-gray-900 rounded text-xl" style="color: #969696" >Sign Up</a>
+                        <a href="/login" class="px-4 py-2 font-bold rounded text-xl" style="color: #CDBD15">Login</a>
+                        <a href="/register" class="px-4 py-2 font-light rounded text-xl" style="color: #969696" >Sign Up</a>
                     </nav>
                 </div>
             </div>
         </header>
         <main class="bg-cover bg-center h-screen" style="background-image: url('img/background.png');">
             <div class="flex h-full items-center justify-center">
-              <div class="flex flex-col items-center justify-center h-screen bg-center bg-cover" style="background-image: url({{ asset('your_background_image.jpg') }}); position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+              <div class="flex flex-col items-center justify-center h-screen bg-center bg-cover" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">
                 <form style="width: 700px; ">
                     <div class="relative">
                         <input type="text" class="px-20 rounded-xl w-full h-16 mb-20" placeholder="Search..." style="outline: none;">
@@ -48,5 +49,6 @@
           background-size: contain;
           background-repeat: no-repeat;
           cursor: pointer;">
+        </div>
     </body>
 </html>
