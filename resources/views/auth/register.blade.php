@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +73,60 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<div class="flex items-center ">
+    <div class="w-full max-w-sm m-auto bg-white rounded-2xl p-8">
+      <form method="POST" action="{{ route('login') }}">
+        <div class="mb-4 border-b border-black py-2">
+          <label class="block text-gray-700 font-extrabold" for="name">
+            Name
+          </label>
+          <input
+            class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            id="name"
+            type="text"
+          />
+        </div>
+        <div class="mb-4 border-b border-black py-2">
+          <label class="block text-gray-700 font-bold" for="email">
+            Email
+          </label>
+          <input
+            class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            id="email"
+            type="email"
+          />
+        </div>
+        <div class="mb-4  border-b border-black py-2">
+          <label class="block text-gray-700 font-bold" for="password">
+            Password
+          </label>
+          <input
+            class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            id="password"
+            type="password"
+          />
+        </div>
+        <div class="mb-6  border-b border-black py-2">
+            <label class="block text-gray-700 font-bold" for="password">
+             Confirm Password
+            </label>
+            <input
+              class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              id="password"
+              type="password"
+            />
+          </div>
+        <div class="flex items-center justify-center">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            type="submit"
+            style="background-color: #CDBD15"
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 @endsection

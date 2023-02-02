@@ -10,11 +10,9 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('reviewer_name');
-            $table->integer('place_id')->unsigned();
+            $table->unsignedBigInteger('place_id');
             $table->foreign('place_id')->references('id')->on('places');
-            $table->integer('rating');
-            $table->text('review_text');
+            $table->text('review');
             $table->timestamps();
         });
     }

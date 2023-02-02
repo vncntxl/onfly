@@ -17,7 +17,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="bg-cover bg-center h-screen" style="background-image: url('img/background.png');">
+<body class="bg-cover bg-center h-screen" style="background-image: url('img/background.png'); background-repeat: no-repeat;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">

@@ -13,7 +13,7 @@ class CreatePlacesTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->text('description');
-            $table->integer('category_id')->unsigned();
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
