@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,8 @@ Route::post('/register', function () {
     // handle the registration process
 });
 
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/search-results/{query}', [SearchController::class, 'searchResults'])->name('search-results');
 
 Auth::routes();
 
@@ -64,3 +67,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
