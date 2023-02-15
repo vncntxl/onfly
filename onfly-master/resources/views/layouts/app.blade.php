@@ -13,11 +13,32 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* width */
+        #search-box::-webkit-scrollbar {
+            width: 10px;
+        }
 
+        /* Track */
+        #search-box::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        #search-box::-webkit-scrollbar-thumb {
+            background:#cdbd15;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        #search-box::-webkit-scrollbar-thumb:hover {
+            background:#cdbd15;
+        }
+        </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="bg-cover bg-center h-screen" style="background-image: url('img/background.png'); background-repeat: no-repeat;">
+<body class="bg-cover bg-center h-screen" style="background-image: url('img/background.png'); background-repeat: no-repeat; overflow: hidden;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
@@ -73,7 +94,7 @@
             </div>
         </nav>
 
-        <main class="py-4 ">
+        <main class=" ">
             @yield('content')
         </main>
     </div>
