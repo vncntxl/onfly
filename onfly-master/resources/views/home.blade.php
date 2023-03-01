@@ -13,8 +13,8 @@
                 </button>
               </div>
         </form>
-        <div class="text-center text-white text-7xl font-bold tracking-normal mb-3">Search Around</div>
-        <div class="text-center text-white text-7xl font-bold tracking-normal mb-4">The World</div>
+        <div class="text-center text-white text-7xl font-extrabold tracking-normal mb-3" style="font-family: 'Montserrat', sans-serif;">Search Around</div>
+        <div class="text-center text-white text-7xl font-extrabold tracking-normal mb-4"style="font-family: 'Montserrat', sans-serif;">The World</div>
         <div class="text-center text-white font-light text-2xl">Enjoy your life.</div>
       </div>
     </div>
