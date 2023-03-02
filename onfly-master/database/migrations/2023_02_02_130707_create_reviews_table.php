@@ -13,6 +13,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('place_id');
             $table->foreign('place_id')->references('id')->on('places');
             $table->text('review');
+            $table->text('comment');// add the comment column
             $table->timestamps();
         });
     }
@@ -21,4 +22,5 @@ class CreateReviewsTable extends Migration
     {
         Schema::dropIfExists('reviews');
     }
+
 }
