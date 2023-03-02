@@ -10,16 +10,12 @@ class TestController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
+        $apiKey = env('GOOGLE_MAPS_API_KEY');
 
-        $response = Http::get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
-            'query' => [
-                'key' => 'AIzaSyAj2VnrtswT3N06pInCHVwtH27IHs6jrCo',
-                'query' => $query,
-            ]
-        ]);
+        $response = Http::get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={$query}&inputtype=textquery&fields=name,geometry,photos,formatted_address&key={$apiKey}");
 
-        $places = $response->json()['results'];
+        $results = $response['candidates'] ?? [];
 
-        return view('test', compact('places', 'query'));
+        return view('test', compact('results'));
     }
 }

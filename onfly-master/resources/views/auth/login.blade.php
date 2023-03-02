@@ -72,7 +72,7 @@
 </div>
 </div>
 </div> --}}
-<div class="flex items-center ">
+<div class="flex items-center mt-40">
     <div class="w-full max-w-sm m-auto bg-white rounded-2xl p-8">
         <form method="POST" action="{{ route('login') }}">
             @csrf
