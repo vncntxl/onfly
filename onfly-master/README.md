@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Untuk Kelompok Saya
+
+UNTUK VILVIN, YENDIAN, SURYADI Untuk bisa project ini lakuin:
+
+1. Masukkin di terminal: Composer Require
+2. Masukkin di terminal: npm i
+3. Masukkin di terminal: npm run dev
+4. Masukkin di terminal: php artisan serve
+5. Buat .env terus copy paste isi .env.example kedalam file .env yang udah dibuat
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -64,11 +74,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-UNTUK VILVIN, YENDIAN, SURYADI Untuk bisa project ini lakuin:<br>
-
-1. Masukkin di terminal: Composer Require<br>
-2. Masukkin di terminal: npm i<br>
-3. Masukkin di terminal: npm run dev <br>
-4. Masukkin di terminal: php artisan serve<br>
-5. Buat .env terus copy paste isi .env.example kedalam file .env yang udah dibuat<br>
