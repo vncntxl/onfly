@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\PlaceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,5 +72,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/test', [TestController::class, 'index'])->name('test');
+
+Route::get('/input', [PlaceController::class, 'showInputForm'])->name('input');
+Route::post('/input', [PlaceController::class, 'store'])->name('places.store');
+Route::get('/places/create', [PlaceController::class, 'showInputForm'])->name('input');
+Route::get('/places', [PlaceController::class, 'index'])->name('places.index');
+Route::delete('/places/{place}', [PlaceController::class, 'destroy'])->name('places.destroy');
 
 

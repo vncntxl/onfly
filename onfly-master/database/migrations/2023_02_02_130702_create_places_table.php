@@ -17,9 +17,12 @@ class CreatePlacesTable extends Migration
             $table->string('place_picture')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->float('latitude');
+            $table->float('longitude');
             $table->timestamps();
         });
     }
+
 
     public function down()
     {
