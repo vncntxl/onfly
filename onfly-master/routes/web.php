@@ -60,8 +60,8 @@ Route::post('/register', function () {
     // handle the registration process
 });
 
-Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/search-results/{query}', [SearchController::class, 'searchResults'])->name('search-results');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
 
 Auth::routes();
 

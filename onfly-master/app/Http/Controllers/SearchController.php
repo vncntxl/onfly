@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Place;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
@@ -13,10 +15,20 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $query = $request->get('q');
+
+        $places = Place::where('name', 'LIKE', "%$query%")
+            ->orWhere('location', 'LIKE', "%$query%")
+            ->get();
+
+        // Return a JSON response with the list of places
+        return response()->json($places);
+
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,16 +48,12 @@ class SearchController extends Controller
      */
     public function search(Request $request)
 {
-    $query = $request->input('query');
 
-    return redirect()->route('search-results', ['query' => $query]);
 
 }
     public function searchResults($query)
     {
-        return view('search-results', [
-            'query' => $query,
-        ]);
+
     }
 
     /**
