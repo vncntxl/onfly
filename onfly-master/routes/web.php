@@ -47,7 +47,9 @@ Route::get('/home', function () {
 Route::get('/login', function () {
     return view('login');
 });
-
+Route::get('/landingpage', function () {
+    return view('landingpage');
+});
 Route::post('/login', function () {
     // handle the login process
 });

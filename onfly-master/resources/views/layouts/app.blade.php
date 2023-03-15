@@ -18,18 +18,18 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .autocomplete-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  margin-top: -5.9rem;
-  padding: 0.5rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 0.5rem 0.5rem;
-}
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            margin-top: -5.9rem;
+            padding: 0.5rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
 
         .autocomplete-results>div {
             padding: 0.5rem;
@@ -41,15 +41,15 @@
         }
 
         #search-results li {
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
-        width: 100%;
-        display: flex;
-    }
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            display: flex;
+        }
 
-    #search-results li .pinpoint {
-       margin-right: 10px;
-    }
+        #search-results li .pinpoint {
+            margin-right: 10px;
+        }
 
 
         /* width */
