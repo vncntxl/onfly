@@ -36,13 +36,16 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
 
 Route::get('/home', function () {
     return view('home');
 });
+Route::get('/autocomplete', [PlaceController::class, 'autocomplete'])->name('autocomplete');
 
+
+Route::get('/places/{id}', [PlaceController::class, 'show'])->name('show');
 
 Route::get('/login', function () {
     return view('login');

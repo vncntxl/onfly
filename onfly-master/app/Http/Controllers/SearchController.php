@@ -17,7 +17,22 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->get('search');
 
+        $places = Place::where('name', 'LIKE', "%$query%")
+            ->orWhere('location', 'LIKE', "%$query%")
+            ->get();
+
+        if ($places->isEmpty()) {
+            $errorMessage = 'No results found for your search query.';
+            return view('show', compact('errorMessage'));
+        }
+
+        return view('show', compact('places'));
+    }
+
+    public function autocomplete(Request $request)
+    {
         $query = $request->get('q');
 
         $places = Place::where('name', 'LIKE', "%$query%")
@@ -26,8 +41,9 @@ class SearchController extends Controller
 
         // Return a JSON response with the list of places
         return response()->json($places);
-
     }
+
+
 
 
     /**
@@ -47,13 +63,10 @@ class SearchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
-{
-
-
-}
+    {
+    }
     public function searchResults($query)
     {
-
     }
 
     /**
