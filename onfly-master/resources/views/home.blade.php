@@ -62,7 +62,7 @@
                         return;
                     }
                     $.ajax({
-                        url: "{{ route('autocomplete') }}",
+                        url: "/autocomplete",
                         type: "GET",
                         data: {
                             q: query
@@ -91,5 +91,5 @@
                 });
             });
         </script>
-    
+
     @endsection

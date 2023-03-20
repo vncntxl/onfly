@@ -4,8 +4,10 @@
     @if (isset($errorMessage))
         <p>{{ $errorMessage }}</p>
     @else
+        <ul>
         @foreach ($places as $place)
-            <li>{{ $place->name }} - {{ $place->location }}</li>
+            <li><a href="{{ route('details', $place->name) }}">{{ $place->name }} - {{ $place->location }}</a></li>
         @endforeach
+        </ul>
     @endif
 @endsection

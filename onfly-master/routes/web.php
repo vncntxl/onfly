@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DetailsController;
 
 
 /*
@@ -43,7 +44,7 @@ Route::get('/home', function () {
     return view('home');
 });
 Route::get('/autocomplete', [PlaceController::class, 'autocomplete'])->name('autocomplete');
-
+Route::get('/details/{name}', [DetailsController::class, 'index'])->name('details');
 
 Route::get('/places/{id}', [PlaceController::class, 'show'])->name('show');
 
