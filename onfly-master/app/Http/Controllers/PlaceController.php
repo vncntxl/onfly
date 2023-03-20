@@ -65,7 +65,7 @@ class PlaceController extends Controller
         Artisan::call('db:seed', ['--class' => 'PlaceSeeder']);
 
         // Return a success response
-        return redirect()->route('input')->with('success', 'Place added successfully.');
+        return redirect()->route('input');
     }
 
 public function destroy(Place $place)
@@ -76,7 +76,14 @@ public function destroy(Place $place)
     // Delete the place
     $place->delete();
 
-    return redirect()->route('input')->with('success', 'Place deleted successfully.');
+    return redirect()->route('input');
+}
+public function autocomplete(Request $request)
+{
+    $searchTerm = $request->get('q');
+    $places = Place::where('name', 'like', '%'.$searchTerm.'%')->orWhere('location', 'like', '%'.$searchTerm.'%')->get();
+    $suggestions = $places->pluck('name');
+    return response()->json($suggestions);
 }
 
 }

@@ -10,10 +10,13 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('place_id');
-            $table->foreign('place_id')->references('id')->on('places');
-            $table->text('review');
-            $table->text('comment');// add the comment column
+            $table->unsignedBigInteger('place_id')->nullable();
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('user_name')->nullable();
+            $table->integer('rating');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

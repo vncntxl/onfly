@@ -7,17 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'place_id',
-        'review',
-        'comment',
-        'star',
-    ];
+    protected $fillable = ['place_id', 'rating', 'comment'];
 
     public function place()
     {
         return $this->belongsTo(Place::class);
     }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

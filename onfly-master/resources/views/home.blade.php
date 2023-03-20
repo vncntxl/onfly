@@ -1,3 +1,4 @@
+<!-- home.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -27,69 +28,71 @@
             </div>
         </div>
     </main>
-    <a href="/home" src="img/help.png" alt="Help" class="help-button"
-        style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-image: url('path/to/help-icon.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;">
-        </div>
-        <script>
-            $(function() {
-                // When the search input is focused, hide the search text
-                $('#search-input').on('focus', function() {
-                    $('.search-text').hide();
+
+    <script>
+        $(document).ready(function() {
+            // Get the search input field and results div
+            var searchInput = $('#search-input');
+            var searchResults = $('#search-results');
+
+            // Create a function to show the autocomplete results
+            function showResults(results, query) {
+                // Clear the current results
+                searchResults.empty();
+
+                // Filter the results based on the search query
+                var filteredResults = results.filter(function(result) {
+                    return result.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
                 });
 
-                // When the search input is blurred, show the search text if the input is empty
-                $('#search-input').on('blur', function() {
-                    if ($(this).val() === '') {
-                        $('.search-text').show();
-                    }
+                // Loop through the filtered results and add them to the results div
+                filteredResults.forEach(function(result) {
+                    var li = $('<li></li>').text(result.name);
+                    searchResults.append(li);
                 });
+            }
 
-                // Handle search input keyup event
-                $('#search-input').on('keyup', function() {
-                    var query = $(this).val();
-                    if (query === '') {
-                        // Hide autocomplete results if query is empty
-                        $('#search-results').empty();
-                        return;
+
+
+            // Handle keyup events on the search input field
+            searchInput.keyup(function() {
+                // Get the search query
+                var query = searchInput.val();
+
+                if (query.length === 0) {
+                    searchResults.empty();
+                    return;
+                }
+
+                // Make an AJAX request to get the autocomplete results
+                $.ajax({
+                    url: '/autocomplete',
+                    type: 'GET',
+                    data: {
+                        query: query
+                    },
+                    success: function(results) {
+                        // Show the autocomplete results
+                        showResults(results, query);
+                    },
+                    error: function() {
+                        // Show an error message
+                        searchResults.html('<li>Error retrieving autocomplete results.</li>');
                     }
-                    $.ajax({
-                        url: "/autocomplete",
-                        type: "GET",
-                        data: {
-                            q: query
-                        },
-                        success: function(response) {
-                            // Clear the search results
-                            $('#search-results').empty();
-                            // Add each place returned by the server to the search results
-                            $.each(response, function(index, place) {
-                                $('#search-results').append(
-                                    '<li class="autocomplete-item" data-name="' + place.name + '">' +
-                                    '<img src="img/iconmonstr-location-1.svg" class="pinpoint" alt="location">' +
-                                    place.name +
-                                    '<br><span class="search-result-location">, ' +
-                                    place.location + '</span></li>'
-                                );
-                            });
-                            // Handle autocomplete item click event
-                            $('.autocomplete-item').on('click', function() {
-                                var name = $(this).data('name');
-                                // Redirect to the search results page with the selected query
-                                window.location.href = "{{ route('search') }}?search=" + name;
-                            });
-                        }
-                    });
                 });
             });
-        </script>
 
-    @endsection
+            // When the search input is focused, hide the search text
+            $('#search-input').on('focus', function() {
+                $('.search-text').hide();
+            });
+
+            // When the search input is blurred, show the search text if the input is empty
+            $('#search-input').on('blur', function() {
+                if ($(this).val() === '') {
+                    $('.search-text').show();
+                }
+            });
+        });
+    </script>
+@endsection

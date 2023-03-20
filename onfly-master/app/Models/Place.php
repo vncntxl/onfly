@@ -13,7 +13,11 @@ class Place extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->with('user');
+    }
+    public function getAvgRating()
+    {
+        return $this->reviews()->avg('rating');
     }
 
     public function category()

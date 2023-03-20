@@ -43,7 +43,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::get('/autocomplete', [PlaceController::class, 'autocomplete'])->name('autocomplete');
+Route::get('/autocomplete', [SearchController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/details/{name}', [DetailsController::class, 'index'])->name('details');
 
 Route::get('/places/{id}', [PlaceController::class, 'show'])->name('show');
@@ -84,5 +84,8 @@ Route::post('/input', [PlaceController::class, 'store'])->name('places.store');
 Route::get('/places/create', [PlaceController::class, 'showInputForm'])->name('input');
 Route::get('/places', [PlaceController::class, 'index'])->name('places.index');
 Route::delete('/places/{place}', [PlaceController::class, 'destroy'])->name('places.destroy');
+
+Route::post('/places/{id}/add-review', 'App\Http\Controllers\ReviewController@addReview')->name('add_review');
+
 
 
