@@ -17,7 +17,10 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
     </head>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.svg" style="height: 10px;">
+
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">

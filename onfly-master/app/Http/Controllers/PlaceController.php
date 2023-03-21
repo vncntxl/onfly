@@ -19,6 +19,12 @@ class PlaceController extends Controller
     }
 
 
+    public function show()
+    {
+        $categories = Category::all();
+        $places = Place::all();
+        return view('input', compact('categories', 'places'));
+    }
 
     public function store(Request $request)
     {
