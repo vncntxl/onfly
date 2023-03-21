@@ -18,7 +18,8 @@
     @else
         <ul>
         @foreach ($places as $place)
-            <li><a href="{{ route('details', $place->name) }}">{{ $place->name }} - {{ $place->location }}</a></li>
+            <li><a href="{{ route('details', $place->name) }}">{{ $place->name }} - {{ $place->location }}- Review count: {{ $place->review_count }}
+            </a></li>
         @endforeach
         </ul>
     @endif

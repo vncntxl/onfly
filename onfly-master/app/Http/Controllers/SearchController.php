@@ -30,6 +30,11 @@ class SearchController extends Controller
             return view('show', compact('errorMessage', 'categories'));
         }
 
+        // Loop through each place and add a review_count property
+        foreach ($places as $place) {
+            $place->review_count = $place->reviews()->count();
+        }
+
         return view('show', compact('places', 'categories'));
     }
 

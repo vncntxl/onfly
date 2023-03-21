@@ -103,6 +103,8 @@ public function filter(Request $request)
     $categories = Category::all();
     $category_id = $request->input('category_id');
 
+
+
     if (!empty($category_id)) {
         $category = Category::find($category_id);
         if ($category) {
@@ -114,7 +116,9 @@ public function filter(Request $request)
     } else {
         $places = Place::all();
     }
-
+foreach ($places as $place) {
+        $place->review_count = $place->reviews()->count();
+    }
     return view('show', compact('places', 'categories'));
 }
 
