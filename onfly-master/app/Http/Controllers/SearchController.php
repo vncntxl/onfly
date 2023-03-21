@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use GuzzleHttp\Client;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
         $query = $request->get('search');
 
         $places = Place::where('name', 'LIKE', "%$query%")
@@ -25,10 +27,10 @@ class SearchController extends Controller
 
         if ($places->isEmpty()) {
             $errorMessage = 'No results found for your search query.';
-            return view('show', compact('errorMessage'));
+            return view('show', compact('errorMessage', 'categories'));
         }
 
-        return view('show', compact('places'));
+        return view('show', compact('places', 'categories'));
     }
 
     public function autocomplete(Request $request)

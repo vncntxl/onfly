@@ -13,8 +13,9 @@ class DetailsController extends Controller
     {
         $place = Place::where('name', $name)->firstOrFail();
         $reviews = $place->reviews()->latest()->get();
+        $sort = 'asc';
 
-        return view('details', compact('place', 'reviews'));
+        return view('details', compact('place', 'reviews', 'sort'));
     }
 
     public function addReview(Request $request, Place $place)

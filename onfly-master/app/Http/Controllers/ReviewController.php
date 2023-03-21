@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Models\Review;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -16,11 +18,13 @@ class ReviewController extends Controller
             'comment' => 'nullable|string',
         ]);
 
-        // create a new review instance
+        // create a new review instance and set the user_id and user_name
         $review = new Review([
             'rating' => $validatedData['rating'],
             'comment' => $validatedData['comment'],
             'place_id' => $place_id,
+            'user_id' => $request->input('user_id'),
+            'user_name' => $request->input('user_name'),
         ]);
 
         // save the review to the database

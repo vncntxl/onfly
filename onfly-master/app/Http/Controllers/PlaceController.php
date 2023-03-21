@@ -86,4 +86,30 @@ public function autocomplete(Request $request)
     return response()->json($suggestions);
 }
 
+public function sort($place_name, $sort)
+{
+    $place = Place::where('name', $place_name)->firstOrFail();
+    $reviews = $place->reviews()->orderBy('rating', $sort)->get();
+    return view('details', compact('place', 'reviews', 'sort'));
+}
+public function filter(Request $request)
+{
+    $categories = Category::all();
+    $category_id = $request->input('category_id');
+
+    if (!empty($category_id)) {
+        $category = Category::find($category_id);
+        if ($category) {
+            $places = $category->places;
+        } else {
+            $errorMessage = 'Category not found.';
+            return view('show', compact('errorMessage', 'categories'));
+        }
+    } else {
+        $places = Place::all();
+    }
+
+    return view('show', compact('places', 'categories'));
+}
+
 }

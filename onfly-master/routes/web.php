@@ -87,5 +87,8 @@ Route::delete('/places/{place}', [PlaceController::class, 'destroy'])->name('pla
 
 Route::post('/places/{id}/add-review', 'App\Http\Controllers\ReviewController@addReview')->name('add_review');
 
+Route::get('/sort/{place_name}', [App\Http\Controllers\PlaceController::class, 'sort'])->name('place.sort');
+Route::get('/sort/{place_name}/{sort}', [App\Http\Controllers\PlaceController::class, 'sort'])->name('place.sort');
+Route::get('/filter', [App\Http\Controllers\PlaceController::class, 'filter'])->name('place.filter');
 
 
