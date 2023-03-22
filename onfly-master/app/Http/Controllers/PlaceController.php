@@ -110,8 +110,8 @@ public function filter(Request $request)
         if ($category) {
             $places = $category->places;
         } else {
-            $errorMessage = 'Category not found.';
-            return view('show', compact('errorMessage', 'categories'));
+            $nocategory = 'No data found.';
+            return view('show', compact('nocategory', 'categories'));
         }
     } else {
         $places = Place::all();

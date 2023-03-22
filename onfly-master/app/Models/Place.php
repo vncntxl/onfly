@@ -17,7 +17,8 @@ class Place extends Model
     }
     public function getAvgRating()
     {
-        return $this->reviews()->avg('rating');
+        $avgRating = $this->reviews()->avg('rating');
+        return number_format($avgRating, 1);
     }
 
     public function category()
