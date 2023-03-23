@@ -193,7 +193,7 @@
             <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center">
                     <a href="{{ url()->previous() }}" class="text-gray-600 hover:text-gray-900 mr-4">
-                        <svg width="26" height="38" viewBox="0 0 26 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="15" height="30" viewBox="0 0 26 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M25.8298 5.4L9.68619 18.9L25.8298 32.4L22.6011 37.8L0 18.9L22.6011 0L25.8298 5.4Z" fill="#CDBD15"/>
                         </svg>
                     </a>

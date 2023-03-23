@@ -50,6 +50,7 @@
               justify-content: center;
               align-items: center;
               opacity: 0;
+              border-radius: 50%;
               transition: opacity 0.3s ease-in-out;
             }
 
@@ -79,11 +80,75 @@
     }
     </script>
 <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-white" style="border-bottom: 1px solid #ccc;">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('/img/logo.png') }}" alt="Logo" style="height: 26px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li>
+                                <a href="/login" class="px-4 py-3 font-bold rounded text-xl navlink no-underline"
+                                    style="color: #CDBD15">Login</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="/register" class="px-4 py-3 font-light rounded text-xl no-underline"
+                                    style="color: #969696">Sign Up</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a href="/profile">
+                            @if (Auth::user()->profile_picture == null)
+                                <img src="{{ asset('../img/default-profile-picture.png') }}" style="width: 25px; height: 25px; margin-top: -18px; margin-right: 60px;" alt="Default Profile Picture">
+                            @else
+                                <img src="{{ asset(Auth::user()->profile_picture) }}" alt="Profile Picture "  style="width: 25px; height: 25px;
+                                margin-top: -18px;
+                                margin-right: 60px;
+                                border-radius: 50%;
+                                object-fit: cover;">
+                            @endif
+                            </a>
+                         </a>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="">
-                    <div class="card-header">{{ __('Profile') }}</div>
+                    <div class="flex">
+                        <a href="/home" class="text-gray-600 hover:text-gray-900 mr-4">
+                            <svg width="15" height="30" viewBox="0 0 26 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25.8298 5.4L9.68619 18.9L25.8298 32.4L22.6011 37.8L0 18.9L22.6011 0L25.8298 5.4Z" fill="#CDBD15"/>
+                            </svg>
+                        </a>
+                        <div class="card-header text-lg  font-extrabold"> {{ __(' Your Profile') }}</div>
+                    </div>
                     <div class="card-body">
                         <div class="text-center mb-4">
                             <form method="POST" action="/update" enctype="multipart/form-data">
@@ -105,23 +170,25 @@
                                             <input id="profile-picture-input" type="file" name="profile_picture" accept="image/*" onchange="previewProfilePicture(event)">
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">{{ __('Name') }}</label>
-                                        <input id="name" type="text" class="form-control" name="name"
+                                    <div class="mb-4 border-b border-black py-2">
+                                        <label class="block text-gray-700 font-bold" for="email">
+                                            Name
+                                        </label>
+                                        <input id="name" type="text"  class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  name="name"
                                             value="{{ Auth::user()->name }}">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4 border-b border-black py-2">
                                         <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                                        <input id="email" type="email" class="form-control" name="email"
+                                        <input id="email" type="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" name="email"
                                             value="{{ Auth::user()->email }}" readonly>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4 border-b border-black py-2">
                                         <label for="password" class="form-label">{{ __('Password') }}</label>
-                                        <input id="password" type="password" class="form-control" name="password" value="********"
+                                        <input id="password" type="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" name="password" value="********"
                                             disabled>
                                         </div>
                                         <div class="d-grid gap-2 mt-4">
-                                            <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
+                                            <button type="submit" style="background-color: #CDBD15; border: none; " class="btn btn-primary ">{{ __('Save Changes') }}</button>
                                         </div>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
