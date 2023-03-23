@@ -92,12 +92,16 @@ public function autocomplete(Request $request)
     return response()->json($suggestions);
 }
 
-public function sort($place_name, $sort)
+public function sort($place_name)
 {
     $place = Place::where('name', $place_name)->firstOrFail();
+
+    $sort = request('sort', 'desc'); // Default to 'desc' if no sort is selected
     $reviews = $place->reviews()->orderBy('rating', $sort)->get();
+
     return view('details', compact('place', 'reviews', 'sort'));
 }
+
 public function filter(Request $request)
 {
     $categories = Category::all();

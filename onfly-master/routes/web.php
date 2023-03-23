@@ -9,6 +9,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingPageController;
 
 
@@ -37,6 +38,11 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
+
+Route::post('/delete', [ProfileController::class, 'delete']);
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::put('/update', [ProfileController::class, 'update']);
+// Route::post('/update', [ProfileController::class, 'updateProfile'])->name('updateprofile');
 
 
 Route::get('/', function () {
@@ -92,7 +98,7 @@ Route::delete('/places/{place}', [PlaceController::class, 'destroy'])->name('pla
 Route::post('/places/{id}/add-review', 'App\Http\Controllers\ReviewController@addReview')->name('add_review');
 
 Route::get('/sort/{place_name}', [App\Http\Controllers\PlaceController::class, 'sort'])->name('place.sort');
-Route::get('/sort/{place_name}/{sort}', [App\Http\Controllers\PlaceController::class, 'sort'])->name('place.sort');
+Route::get('/details/{place_name}/sort', [PlaceController::class, 'sort'])->name('place.sort');
 Route::get('/filter', [App\Http\Controllers\PlaceController::class, 'filter'])->name('place.filter');
 
 

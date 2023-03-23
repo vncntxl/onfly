@@ -49,7 +49,7 @@
                             <p class="text-gray-600 ">{{ $place->review_count }} reviews</p>
                             <p class="text-black font-bold mt-3">{{ $place->location }}</p>
                             <div class="absolute top-0 right-0">
-                                <div class="flex" style="margin-top: 120px; margin-right: 40px;">
+                                <div class="flex" style="margin-top: 120px; margin-right: 20px;">
                                     <img src="../img/star.png" alt="" class="" style="height: 30px;">
                                     <div class="ml-2 mt-1">
                                         <p class="text-black font-bold">{{ $place->getAvgRating() }}</p>
