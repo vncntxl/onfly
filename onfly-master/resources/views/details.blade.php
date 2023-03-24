@@ -211,7 +211,7 @@
                     </div>
                     <p class="text-gray-700 text-lg mb-4 mt-2" style="max-width: 500px;">{{ $place->description }}</p>
                     <div class="flex">
-                        <img src="../img/star.png" alt="" class="mr-2" style="height: 35px;">
+                        <i class="fas fa-star text-yellow-400 mt-2 mr-2"></i>
                         <p class="text-black font-bold text-2xl">{{ $place->getAvgRating() }}</p>
                     </div>
                 </div>
