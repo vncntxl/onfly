@@ -150,7 +150,12 @@
                         <div class="card-header text-lg  font-extrabold"> {{ __(' Your Profile') }}</div>
                     </div>
                     <div class="card-body">
-                        <div class="text-center mb-4">
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                        <div class="mb-4">
                             <form method="POST" action="/update" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
@@ -158,8 +163,8 @@
                                 value="{{ Auth::user()->name }}" readonly>
                                 <input id="email" type="hidden" class="form-control" name="email"
                                 value="{{ Auth::user()->email }}" readonly> --}}
-                                <div class="text-center mb-4">
-                                    <div class="profile-picture">
+                                <div class=" mb-4">
+                                    <div class="profile-picture mx-60">
                                         @if (Auth::user()->profile_picture == null)
                                             <img src="{{ asset('../img/default-profile-picture.png') }}" alt="Default Profile Picture">
                                         @else

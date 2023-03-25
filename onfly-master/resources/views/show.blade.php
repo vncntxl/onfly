@@ -8,17 +8,18 @@
                 {{ csrf_field() }}
                 <div class="relative">
                     <input type="text" class="px-20 rounded-xl w-full h-16 mb-20" placeholder="Search..."
-                    style="outline: none; width: 600px;" id="search-input" name="search" >
-                <ul id="search-results" class="autocomplete-results" style="top: 140px"></ul>
+                        style="outline: none; width : 600px;" id="search-input" name="search" value="">
+                <ul id="search-results" class="autocomplete-results cursor-pointer" style="top: 140px"></ul>
                     <button type="submit"
                         class="absolute border-r left-0 top-2 bottom-0 pl-5 pr-5 h-12 outline-none border-gray-300 rounded button">
                         <img src="img/explore.png" alt="Button Image" style="width: 25px">
                     </button>
             </form>
             <div class="mb-4" style="margin-left: -450px;">
-                <form method="GET" action="{{ route('place.filter') }}">
+                <form method="GET" action="{{ route('place.sorting', ['query' => $query]) }}">
+
                     <select name="category_id" id="category_id"
-                        class="px-4 py-2 rounded-md border border-gray-300 font-monospace">
+                        class="px-4 py-2 rounded-md border border-gray-300">
                         <option value="" {{ !request('category_id') ? 'selected' : '' }}>All categories</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
@@ -26,8 +27,15 @@
                             </option>
                         @endforeach
                     </select>
-                    <button type="submit" class="ml-4 px-4 py-2 rounded-md text-white font-bold font-monospace"
-                        style="background-color: #CDBD15;;">Filter</button>
+
+                    <select name="sort" id="sort"
+                        class="px-4 py-2 rounded-md border border-gray-300 ml-4">
+                        <option value="desc" {{ request('sorting') == 'desc' ? 'selected' : '' }}>Sort by highest rating</option>
+                        <option value="asc" {{ request('sorting') == 'asc' ? 'selected' : '' }}>Sort by lowest rating</option>
+                    </select>
+
+                    <button type="submit" class="ml-4 px-4 py-2 rounded-md text-white font-bold"
+                        style="background-color: #CDBD15;;">Sort</button>
                 </form>
             </div>
             <div class="search-results-box absolute bg-white rounded-lg shadow-lg border border-gray-200 z-50"
@@ -65,50 +73,10 @@
 
                 @endif
             </div>
-
-
-            {{-- @if (isset($errorMessage))
-                    <p>{{ $errorMessage }}</p>
-                @else
-                    <ul>
-                        @foreach ($places as $place)
-                            <li><a href="{{ route('details', $place->name) }}">{{ $place->name }} -
-                                    {{ $place->location }}- Review count: {{ $place->review_count }}
-                                </a></li>
-                        @endforeach
-                    </ul>
-                @endif --}}
         </div>
     </div>
     </div>
     </div>
-
-
-
-
-
-    {{-- <form method="GET" action="{{ route('place.filter') }}">
-    <label for="category_id">Select a category:</label>
-    <select name="category_id" id="category_id">
-        <option value="" {{ !request('category_id') ? 'selected' : '' }}>All categories</option>
-        @foreach ($categories as $category)
-            <option value="{{ $category->id }}" {{ $category->id == request('category_id') ? 'selected' : '' }}>{{ $category->name }}</option>
-        @endforeach
-    </select>
-    <button type="submit">Filter</button>
-</form>
-
-
-    @if (isset($errorMessage))
-        <p>{{ $errorMessage }}</p>
-    @else
-        <ul>
-        @foreach ($places as $place)
-            <li><a href="{{ route('details', $place->name) }}">{{ $place->name }} - {{ $place->location }}- Review count: {{ $place->review_count }}
-            </a></li>
-        @endforeach
-        </ul>
-    @endif --}}
     <script>
         $(document).ready(function() {
             // Get the search input field and results div
@@ -128,11 +96,16 @@
                 // Loop through the filtered results and add them to the results div
                 filteredResults.forEach(function(result) {
                     var li = $('<li></li>').text(result.name);
+                    li.click(function() {
+                        // Add the clicked text to the search input field
+                        searchInput.val(result.name);
+
+                        // Clear the search results
+                        searchResults.empty();
+                    });
                     searchResults.append(li);
                 });
             }
-
-
 
             // Handle keyup events on the search input field
             searchInput.keyup(function() {
@@ -175,4 +148,5 @@
             });
         });
     </script>
+
 @endsection

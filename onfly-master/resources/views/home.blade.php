@@ -1,18 +1,22 @@
-<!-- home.blade.php -->
 @extends('layouts.app')
 
 @section('content')
+
     <main class="bg-cover bg-center" style="background-image: url('img/background.png');">
         <div class="flex h-full items-center justify-center">
             <div class="flex flex-col items-center justify-center h-screen bg-center bg-cover"
                 style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">
+                @php
+                    $query = $query ?? '';
+                @endphp
                 <form style="width: 700px;" action="{{ route('search') }}" method="get">
                     {{ csrf_field() }}
                     <div class="relative">
+                        <input type="hidden" name="query" value="{{ $query }}">
                         <input type="text" class="px-20 rounded-xl w-full h-16 mb-20" placeholder="Search..."
-                            style="outline: none;" id="search-input" name="search">
-                        <ul id="search-results" class="autocomplete-results "></ul>
-                        <button type="submit"
+                            style="outline: none;" id="search-input" name="search" value="{{ $query }}">
+                            <ul id="search-results" class="autocomplete-results cursor-pointer" style="top: 140px"></ul>
+                            <button type="submit"
                             class="absolute border-r left-0 top-2 bottom-0 pl-5 pr-5 h-12 outline-none border-gray-300 rounded button">
                             <img src="img/explore.png" alt="Button Image" style="width: 25px">
                         </button>
@@ -28,6 +32,7 @@
             </div>
         </div>
     </main>
+
 
     <script>
         $(document).ready(function() {
@@ -48,11 +53,16 @@
                 // Loop through the filtered results and add them to the results div
                 filteredResults.forEach(function(result) {
                     var li = $('<li></li>').text(result.name);
+                    li.click(function() {
+                        // Add the clicked text to the search input field
+                        searchInput.val(result.name);
+
+                        // Clear the search results
+                        searchResults.empty();
+                    });
                     searchResults.append(li);
                 });
             }
-
-
 
             // Handle keyup events on the search input field
             searchInput.keyup(function() {
@@ -95,4 +105,5 @@
             });
         });
     </script>
+
 @endsection

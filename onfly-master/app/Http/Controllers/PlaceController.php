@@ -74,8 +74,8 @@ class PlaceController extends Controller
         return redirect()->route('input');
     }
 
-public function destroy(Place $place)
-{
+    public function destroy(Place $place)
+    {
     // Delete the reviews associated with the place
     $place->reviews()->delete();
 
@@ -102,28 +102,64 @@ public function sort($place_name)
     return view('details', compact('place', 'reviews', 'sort'));
 }
 
+public function sorting(Request $request, $query)
+{
+    $sort = $request->input('sort', 'desc');
+    $category_id = $request->input('category_id');
+    $query = '';
+
+    if (!empty($category_id)) {
+        $category = Category::find($category_id);
+        if ($category) {
+            $places = $category->places()->where(function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                ->orWhere('location', 'LIKE', "%$query%");
+            })->withCount('reviews')->orderBy('reviews_count', $sort)->get();
+        } else {
+            $nocategory = 'No data found.';
+            return view('show', compact('places', 'categories', 'query'));
+        }
+    } else {
+        $places = Place::where('name', 'LIKE', "%$query%")
+                  ->orWhere('location', 'LIKE', "%$query%")
+                  ->withCount('reviews')->orderBy('reviews_count', $sort)->get();
+    }
+
+    $categories = Category::all();
+
+    return view('show', compact('places', 'categories', 'query'));
+}
+
 public function filter(Request $request)
 {
     $categories = Category::all();
     $category_id = $request->input('category_id');
-
+    $query = '';
 
 
     if (!empty($category_id)) {
         $category = Category::find($category_id);
         if ($category) {
-            $places = $category->places;
+            $places = $category->places()->where(function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                  ->orWhere('location', 'LIKE', "%$query%");
+            })->get();
         } else {
             $nocategory = 'No data found.';
-            return view('show', compact('nocategory', 'categories'));
+            return view('show', compact('nocategory', 'categories', 'query'));
         }
     } else {
-        $places = Place::all();
+        $places = Place::where('name', 'LIKE', "%$query%")
+                  ->orWhere('location', 'LIKE', "%$query%")
+                  ->get();
     }
-foreach ($places as $place) {
+
+    foreach ($places as $place) {
         $place->review_count = $place->reviews()->count();
     }
-    return view('show', compact('places', 'categories'));
+
+    return view('show', compact('places', 'categories', 'query'));
 }
+
 
 }

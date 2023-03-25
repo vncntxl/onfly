@@ -78,6 +78,7 @@ Route::post('/register', function () {
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
+Route::get('/show/{query}/sorting', [PlaceController::class, 'sorting'])->name('place.sorting');
 
 Auth::routes();
 

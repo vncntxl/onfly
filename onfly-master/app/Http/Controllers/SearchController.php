@@ -21,22 +21,28 @@ class SearchController extends Controller
         $categories = Category::all();
         $query = $request->get('search');
 
+
         $places = Place::where('name', 'LIKE', "%$query%")
-            ->orWhere('location', 'LIKE', "%$query%")
-            ->get();
+                ->orWhere('location', 'LIKE', "%$query%")
+                ->get();
 
         if ($places->isEmpty()) {
             $errorMessage = 'No results found for your search query.';
-            return view('show', compact('errorMessage', 'categories'));
+            return view('show', compact('errorMessage', 'categories', 'query'));
         }
 
         // Loop through each place and add a review_count property
         foreach ($places as $place) {
             $place->review_count = $place->reviews()->count();
+            $place->average_rating = $place->reviews()->avg('rating');
         }
 
-        return view('show', compact('places', 'categories'));
+        // Sort places by highest average rating
+        $places = $places->sortByDesc('average_rating');
+
+        return view('show', compact('places', 'categories', 'query'));
     }
+
 
     public function autocomplete(Request $request)
     {
